@@ -227,10 +227,10 @@ export default function Header(): JSX.Element {
                   </Link>
 
                   <Link
-                    href="/pricing"
+                    href="/chi-siamo"
                     onClick={() => setIsSheetOpen(false)}
                     className={`group flex h-20 items-center justify-between border-b border-white/20 px-6 transition-colors ${
-                      pathname === "/pricing"
+                      pathname === "/chi-siamo"
                         ? "bg-white text-black"
                         : "text-white hover:bg-white/5"
                     }`}
@@ -238,22 +238,22 @@ export default function Header(): JSX.Element {
                     <span
                       className={`text-lg font-light ${tomorrow.className}`}
                     >
-                      Pricing
+                      Chi siamo
                     </span>
                     <ArrowUpRight
                       viewBox="4 4 16 16"
                       strokeWidth={1}
                       className={`h-5 w-5 transition-colors duration-300 ${
-                        pathname === "/pricing" ? "text-black" : "text-white"
+                        pathname === "/chi-siamo" ? "text-black" : "text-white"
                       }`}
                     />
                   </Link>
 
                   <Link
-                    href="/docs"
+                    href="/contacts"
                     onClick={() => setIsSheetOpen(false)}
                     className={`group flex h-20 items-center justify-between border-b border-white/20 px-6 transition-colors ${
-                      pathname === "/docs"
+                      pathname === "/contacts"
                         ? "bg-white text-black"
                         : "text-white hover:bg-white/5"
                     }`}
@@ -261,13 +261,13 @@ export default function Header(): JSX.Element {
                     <span
                       className={`text-lg font-light ${tomorrow.className}`}
                     >
-                      Docs
+                      Contacts
                     </span>
                     <ArrowUpRight
                       viewBox="4 4 16 16"
                       strokeWidth={1}
                       className={`h-5 w-5 transition-colors duration-300 ${
-                        pathname === "/docs" ? "text-black" : "text-white"
+                        pathname === "/contacts" ? "text-black" : "text-white"
                       }`}
                     />
                   </Link>
@@ -338,48 +338,48 @@ export default function Header(): JSX.Element {
                 </motion.div>
               </Link>
               <Link
-                onMouseEnter={() => setHoveredLink("pricing")}
+                onMouseEnter={() => setHoveredLink("chi-siamo")}
                 onMouseLeave={() => setHoveredLink(null)}
-                href="/pricing"
+                href="/chi-siamo"
                 className={`group hover:bg-accent/20 inline-flex h-full w-48 items-end justify-between border-s bg-transparent px-4 py-2 text-sm font-light transition-colors focus:outline-none ${
-                  pathname === "/pricing"
+                  pathname === "/chi-siamo"
                     ? "bg-white text-black"
                     : `${textColorClass} hover:bg-accent/20`
                 } ${borderColorClass}`}
               >
-                Pricing
+                Chi siamo
                 <motion.div
-                  animate={{ rotate: hoveredLink === "pricing" ? 45 : 0 }}
+                  animate={{ rotate: hoveredLink === "chi-siamo" ? 45 : 0 }}
                   transition={{ duration: 0.3 }}
                 >
                   <ArrowUpRight
                     viewBox="4 4 16 16"
                     strokeWidth={1}
                     className={`transition-colors duration-300 ${
-                      pathname === "/pricing" ? "text-black" : textColorClass
+                      pathname === "/chi-siamo" ? "text-black" : textColorClass
                     }`}
                   />
                 </motion.div>
               </Link>
               <Link
-                onMouseEnter={() => setHoveredLink("docs")}
+                onMouseEnter={() => setHoveredLink("contacts")}
                 onMouseLeave={() => setHoveredLink(null)}
-                href="/docs"
+                href="/contacts"
                 className={`group hover:bg-accent/20 inline-flex h-full w-48 items-end justify-between border-s bg-transparent px-4 py-2 text-sm font-light transition-colors focus:outline-none ${
-                  pathname === "/docs"
+                  pathname === "/contacts"
                     ? "bg-white text-black"
                     : `${textColorClass} hover:bg-accent/20`
                 } ${borderColorClass}`}
               >
-                Docs
+                Contacts
                 <motion.div
-                  animate={{ rotate: hoveredLink === "docs" ? 45 : 0 }}
+                  animate={{ rotate: hoveredLink === "contacts" ? 45 : 0 }}
                   transition={{ duration: 0.3 }}
                 >
                   <ArrowUpRight
                     viewBox="4 4 16 16"
                     strokeWidth={1}
-                    className={`transition-colors duration-300 ${pathname === "/docs" ? "text-black" : textColorClass}`}
+                    className={`transition-colors duration-300 ${pathname === "/contacts" ? "text-black" : textColorClass}`}
                   />
                 </motion.div>
               </Link>

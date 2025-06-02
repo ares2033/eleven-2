@@ -139,10 +139,16 @@ export default function Products() {
                   initial={{ opacity: 0, y: 40 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ duration: 0.8, delay: index * 0.2 }}
-                  className={`${index < products.length - 1 ? "border-b border-white/20 pb-20" : ""}`}
+                  className={`grid grid-cols-1 gap-12 lg:grid-cols-2 lg:gap-16 ${
+                    index < products.length - 1
+                      ? "border-b border-white/20 pb-20"
+                      : ""
+                  }`}
                 >
                   {/* Product Info */}
-                  <div className={index % 2 === 1 ? "lg:order-2" : ""}>
+                  <div
+                    className={`${index % 2 === 1 ? "lg:order-2" : "lg:order-1"}`}
+                  >
                     <div className="mb-6 flex items-center">
                       <div className="mr-6 flex h-16 w-16 items-center justify-center border border-white/20">
                         <product.icon
@@ -212,7 +218,9 @@ export default function Products() {
                   </div>
 
                   {/* Features List */}
-                  <div className={index % 2 === 1 ? "lg:order-1" : ""}>
+                  <div
+                    className={`${index % 2 === 1 ? "lg:order-1" : "lg:order-2"}`}
+                  >
                     <div className="border border-white/20 p-8">
                       <h3
                         className={`mb-6 text-xl font-light text-white ${tomorrow.className}`}

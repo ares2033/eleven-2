@@ -3,7 +3,9 @@
 import { useEffect, useRef, useState } from "react";
 import { HoverArrowLink } from "./hover-arrow-link";
 import { Poppins } from "next/font/google";
-import RotatingText from "@/TextAnimations/RotatingText/RotatingText";
+import RotatingText, {
+  type RotatingTextRef,
+} from "@/TextAnimations/RotatingText/RotatingText";
 
 const poppins = Poppins({
   subsets: ["latin"],
@@ -12,7 +14,10 @@ const poppins = Poppins({
 
 export function Mission() {
   const [isArrowVisible, setIsArrowVisible] = useState(false);
+  const [isTextVisible, setIsTextVisible] = useState(false);
   const arrowRef = useRef<HTMLDivElement>(null);
+  const rotatingTextRef = useRef<RotatingTextRef>(null);
+  const textObserverRef = useRef<HTMLSpanElement>(null);
 
   useEffect(() => {
     const observer = new IntersectionObserver(
@@ -24,15 +29,37 @@ export function Mission() {
       },
     );
 
+    const textObserver = new IntersectionObserver(
+      ([entry]) => {
+        const isVisible = !!entry && entry.isIntersecting;
+        setIsTextVisible(isVisible);
+
+        if (isVisible && rotatingTextRef.current) {
+          rotatingTextRef.current.reset();
+        }
+      },
+      {
+        threshold: 0.3,
+      },
+    );
+
     const currentArrowRef = arrowRef.current;
+    const currentTextRef = textObserverRef.current;
 
     if (currentArrowRef) {
       observer.observe(currentArrowRef);
     }
 
+    if (currentTextRef) {
+      textObserver.observe(currentTextRef);
+    }
+
     return () => {
       if (currentArrowRef) {
         observer.unobserve(currentArrowRef);
+      }
+      if (currentTextRef) {
+        textObserver.unobserve(currentTextRef);
       }
     };
   }, []);
@@ -47,15 +74,20 @@ export function Mission() {
         <h2
           className={`w-full text-center text-3xl font-semibold text-black md:text-left md:text-7xl lg:text-8xl ${poppins.className}`}
         >
-          <span className="flex flex-wrap items-center justify-center md:justify-start">
+          <span
+            className="flex flex-wrap items-center justify-center md:justify-start"
+            ref={textObserverRef}
+          >
             eleven
             <RotatingText
+              ref={rotatingTextRef}
               texts={["pay", "board", "auth", " times better!", "hats"]}
               staggerFrom={"last"}
               initial={{ y: "100%" }}
               animate={{ y: 0 }}
               exit={{ y: "-120%" }}
               loop={false}
+              auto={isTextVisible}
               staggerDuration={0.025}
               splitLevelClassName="overflow-hidden "
               transition={{
@@ -70,7 +102,7 @@ export function Mission() {
 
         {/* Arrow Container - Hidden on mobile, visible on desktop */}
         <div className="hidden md:block">
-          <HoverArrowLink text="Scopri chi siamo" href="#about" />
+          <HoverArrowLink text="Scopri chi siamo" href="/chi-siamo" />
         </div>
       </div>
 
@@ -81,7 +113,7 @@ export function Mission() {
       >
         <HoverArrowLink
           text="Scopri chi siamo"
-          href="#about"
+          href="/chi-siamo"
           isMobileVisible={isArrowVisible}
         />
       </div>
